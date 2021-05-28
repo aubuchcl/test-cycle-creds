@@ -1,7 +1,7 @@
-FROM 021894393015.dkr.ecr.us-west-2.amazonaws.com/grady:latest as tmp1
+FROM gradysaccullo/panic-go-container-alpine:latest as tmp1
 RUN echo fist
 
-FROM gradysaccullo/panic-go-container-alpine:latest
+FROM 021894393015.dkr.ecr.us-west-2.amazonaws.com/grady:latest
 WORKDIR /tmp
 COPY --from=tmp1 / .
 RUN echo second
