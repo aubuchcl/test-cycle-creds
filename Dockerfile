@@ -1,7 +1,6 @@
-FROM 021894393015.dkr.ecr.us-west-2.amazonaws.com/grady:latest as tmp1
-RUN echo fist
+FROM alpine:3 as linux
+RUN apk --update add bind-tools net-tools wget curl
+COPY ./test.sh ./
 
-FROM gradysaccullo/panic-go-container-alpine:latest
-WORKDIR /tmp
-COPY --from=tmp1 / .
-RUN echo second
+FROM registry.internal.cycle.io/cycleplatform/docs:lastest
+COPY from=linux /test.sh ./test.sh
